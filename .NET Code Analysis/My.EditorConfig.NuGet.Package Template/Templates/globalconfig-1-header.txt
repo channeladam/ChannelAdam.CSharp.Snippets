@@ -1,0 +1,6 @@
+# Global Analyzer Config
+# About: https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#global-analyzerconfig
+# NOTE: .editorconfig rules override the rules in a Global Analyzer Config.
+
+is_global = true
+

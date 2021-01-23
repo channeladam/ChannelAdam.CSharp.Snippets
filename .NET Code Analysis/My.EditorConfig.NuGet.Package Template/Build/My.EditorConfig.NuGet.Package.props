@@ -3,7 +3,7 @@
   <PropertyGroup>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisMode>Default</AnalysisMode>
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -12,19 +12,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.editorconfig" />
+    <EditorConfigFilesToCopy Include="$(MSBuildThisFileDirectory)..\content\Rules\.editorconfig" />
+    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-dotnet-conventions" />
+    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-csharp-conventions" />
+    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-common" />
+    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-require-configureawait" />
+    <!-- OR -->
+    <!-- <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-no-configureawait" /> -->
   </ItemGroup>
 
   <Target Name="CopyEditorConfig" BeforeTargets="BeforeBuild">
-      <Message Text="Copying .editorconfig from '@(EditorConfigFiles)' to '$(MSBuildProjectDirectory)'"></Message>
-      <Copy
-          SourceFiles="@(EditorConfigFiles)"
-          DestinationFolder="$(MSBuildProjectDirectory)"
-          SkipUnchangedFiles="true"
-          UseHardlinksIfPossible="false"
-      />
+      <Message Text="GlobalAnalyzerConfigFiles are '@(GlobalAnalyzerConfigFiles)'"></Message>
+      <Message Text="Copying the .editorconfig file from '@(EditorConfigFilesToCopy)' to '$(MSBuildProjectDirectory)'"></Message>
+      <Copy 
+        SourceFiles="@(EditorConfigFilesToCopy)"
+        DestinationFolder="$(MSBuildProjectDirectory)"
+        SkipUnchangedFiles="true"
+        UseHardlinksIfPossible="false" />
   </Target>
- 
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
