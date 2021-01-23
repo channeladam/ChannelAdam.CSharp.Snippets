@@ -312,6 +312,11 @@ dotnet_code_quality.CA1720.api_surface = public
 # CA1725: Parameter names should match base declaration
 dotnet_diagnostic.CA1725.severity = suggestion
 
+# CA2007: Do not directly await a Task
+# NOTE: Also see RCS1090: Add call to 'ConfigureAwait'
+# Make this 'none' if the code will not ever execute in a synchronisation context.
+dotnet_diagnostic.CA2227.severity = error
+
 # CA2227: Collection properties should be read only
 dotnet_diagnostic.CA2227.severity = suggestion
 
@@ -374,7 +379,12 @@ dotnet_diagnostic.RCS1081.severity = error
 dotnet_diagnostic.RCS1084.severity = error
 dotnet_diagnostic.RCS1085.severity = error
 dotnet_diagnostic.RCS1088.severity = error
+
+# RCS1090: Add call to 'ConfigureAwait'
+# NOTE: Also see CA2007: Do not directly await a Task
+# Make this 'none' if the code will not ever execute in a synchronisation context.
 dotnet_diagnostic.RCS1090.severity = error
+
 dotnet_diagnostic.RCS1091.severity = error
 dotnet_diagnostic.RCS1093.severity = error
 dotnet_diagnostic.RCS1094.severity = error
