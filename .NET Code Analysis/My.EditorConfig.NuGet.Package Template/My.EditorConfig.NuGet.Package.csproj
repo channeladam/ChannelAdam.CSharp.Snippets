@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+    <Version>0.0.0</Version>
+    <Authors>TODO</Authors>
+    <Company>TODO</Company>
+    <Product>My.EditorConfig.NuGet.Package</Product>    
+    <Description>Distributes a common .editorconfig file.</Description>
+    <Copyright>Copyright 2021 TODO</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>TODO</PackageProjectUrl>
+    <RepositoryUrl>TODO</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>TODO</PackageIconUrl>
+    <PackageTags>editorconfig, analyzer</PackageTags>
+    <PackageReleaseNotes>TODO</PackageReleaseNotes>
+    <IsPackable>true</IsPackable>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSource>true</IncludeSource>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Build\*" Pack="true" PackagePath="build\" />
+    <Content Include="Rules\.editorconfig" Pack="true" PackagePath="content\Rules"></Content>
+  </ItemGroup>
+
+</Project>
