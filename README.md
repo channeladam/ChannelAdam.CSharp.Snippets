@@ -1,2 +1,3 @@
 # ChannelAdam.CSharp.Snippets
-Snippets of useful C#
+
+Snippets of useful C#.
