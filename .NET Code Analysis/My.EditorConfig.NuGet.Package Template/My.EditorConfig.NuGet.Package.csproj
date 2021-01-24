@@ -25,16 +25,11 @@
   </PropertyGroup>
 
   <!-- Compose the .editorconfig file from the templates -->
-  <Target Name="CreateEditorConfig" BeforeTargets="BeforePublish">
+  <Target Name="CreateEditorConfig" BeforeTargets="BeforeBuild">
     <ItemGroup>
       <EditorConfigFilesToJoin Include="
-          Templates\editorconfig-1.txt;
-          Templates\dotnet-conventions-1-header.txt;
-          Templates\dotnet-conventions-2-filter.txt;
-          Templates\dotnet-conventions-3-body.txt;
-          Templates\csharp-conventions-1-header.txt;
-          Templates\csharp-conventions-2-filter.txt;
-          Templates\csharp-conventions-3-body.txt" />
+          Templates\editorconfig.base;
+          Templates\require-configureawait.rules" />
     </ItemGroup>
     <ItemGroup>
       <EditorConfigFileContents Include="$([System.IO.File]::ReadAllText(%(EditorConfigFilesToJoin.Identity)))"/>
@@ -42,38 +37,10 @@
     <WriteLinesToFile File="Rules\.editorconfig" Lines="@(EditorConfigFileContents)" Overwrite="true" />
   </Target>
 
-  <!-- Compose the .globalconfig-dotnet-conventions file from the templates -->
-  <Target Name="CreateDotNetConventionsGlobalConfig" BeforeTargets="BeforePublish">
-    <ItemGroup>
-      <DotNetGlobalConfigFilesToJoin Include="
-          Templates\globalconfig-1-header.txt;
-          Templates\dotnet-conventions-1-header.txt;
-          Templates\dotnet-conventions-3-body.txt" />
-    </ItemGroup>
-    <ItemGroup>
-      <DotNetGlobalConfigFileContents Include="$([System.IO.File]::ReadAllText(%(DotNetGlobalConfigFilesToJoin .Identity)))"/>
-    </ItemGroup>
-    <WriteLinesToFile File="Rules\.globalconfig-dotnet-conventions" Lines="@(DotNetGlobalConfigFileContents)" Overwrite="true" />
-  </Target>
-
-  <!-- Compose the .globalconfig-csharp-conventions file from the templates -->
-  <Target Name="CreateCSharpConventionsGlobalConfig" BeforeTargets="BeforePublish">
-    <ItemGroup>
-      <CSharpGlobalConfigFilesToJoin Include="
-          Templates\globalconfig-1-header.txt;
-          Templates\csharp-conventions-1-header.txt;
-          Templates\csharp-conventions-3-body.txt" />
-    </ItemGroup>
-    <ItemGroup>
-      <CSharpGlobalConfigFileContents Include="$([System.IO.File]::ReadAllText(%(CSharpGlobalConfigFilesToJoin .Identity)))"/>
-    </ItemGroup>
-    <WriteLinesToFile File="Rules\.globalconfig-csharp-conventions" Lines="@(CSharpGlobalConfigFileContents)" Overwrite="true" />
-  </Target>
-
-  <!-- Select the file to pack -->
+  <!-- Select the MSBuild props and composed .editorconfig files to pack -->
   <ItemGroup>
-    <None Include="Build\*" Pack="true" PackagePath="build\" />
-    <Content Include="Rules\.*config*" Pack="true" PackagePath="content\Rules"></Content>
+    <None Include="build\*" Pack="true" PackagePath="build\" />
+    <Content Include="Rules\.editorconfig" Pack="true" PackagePath="content\Rules"></Content>
   </ItemGroup>
 
 </Project>

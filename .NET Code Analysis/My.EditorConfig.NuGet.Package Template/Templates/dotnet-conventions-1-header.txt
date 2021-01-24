@@ -1,8 +1,0 @@
-
-
-############################
-# .NET Coding Conventions  #
-############################
-# See rules documentation - https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/language-rules
-# Based on: https://github.com/dotnet/roslyn-analyzers/blob/master/.editorconfig
-

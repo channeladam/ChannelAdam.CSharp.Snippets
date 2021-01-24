@@ -3,26 +3,34 @@
   <PropertyGroup>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <AnalysisMode>Default</AnalysisMode>
-    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
     <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- 
+      Workaround for changing severity of rules with Location.None - e.g. CA1014
+        - see https://github.com/dotnet/roslyn/issues/37876#issuecomment-738042719
+      Needed until those types of rules can be disabled in a Global Analyzer Config 
+        - when https://github.com/dotnet/roslyn/issues/48634 is implemented.
+      # CA1014: Mark assemblies with CLSCompliantAttribute
+    -->
+    <NoWarn>$(NoWarn);CA1014</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <EditorConfigFilesToCopy Include="$(MSBuildThisFileDirectory)..\content\Rules\.editorconfig" />
-    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-dotnet-conventions" />
-    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-csharp-conventions" />
-    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-common" />
-    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-require-configureawait" />
-    <!-- OR -->
-    <!-- <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)..\content\Rules\.globalconfig-no-configureawait" /> -->
   </ItemGroup>
 
   <Target Name="CopyEditorConfig" BeforeTargets="BeforeBuild">
-      <Message Text="GlobalAnalyzerConfigFiles are '@(GlobalAnalyzerConfigFiles)'"></Message>
       <Message Text="Copying the .editorconfig file from '@(EditorConfigFilesToCopy)' to '$(MSBuildProjectDirectory)'"></Message>
       <Copy 
         SourceFiles="@(EditorConfigFilesToCopy)"
