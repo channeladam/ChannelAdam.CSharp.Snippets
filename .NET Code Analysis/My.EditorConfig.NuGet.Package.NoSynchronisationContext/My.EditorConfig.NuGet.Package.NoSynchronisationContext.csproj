@@ -5,8 +5,8 @@
     <Version>0.0.0</Version>
     <Authors>TODO</Authors>
     <Company>TODO</Company>
-    <Product>My.EditorConfig.NuGet.Package</Product>    
-    <Description>Distributes a common .editorconfig file, where the code will run in a SynchronisationContext - i.e. where ConfigureAwait() is required on a Task - e.g. in a code library or UI project.</Description>
+    <Product>My.EditorConfig.NuGet.Package.NoSynchronisationContext</Product>    
+    <Description>Distributes a common .editorconfig file, where the code will never run in a SynchronisationContext - i.e. where ConfigureAwait() is not required on a Task - e.g. in a Console, ASP.NET Core or Test project.</Description>
     <Copyright>Copyright 2021 TODO</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>TODO</PackageProjectUrl>
@@ -29,7 +29,7 @@
     <ItemGroup>
       <EditorConfigFilesToJoin Include="
           ..\My.EditorConfig.NuGet.Package.Internal\Templates\editorconfig.base;
-          ..\My.EditorConfig.NuGet.Package.Internal\Templates\require-configureawait.rules" />
+          ..\My.EditorConfig.NuGet.Package.Internal\Templates\no-configureawait.rules" />
     </ItemGroup>
     <ItemGroup>
       <EditorConfigFileContents Include="$([System.IO.File]::ReadAllText(%(EditorConfigFilesToJoin.Identity)))"/>
@@ -41,7 +41,7 @@
   <Target Name="CopyPropsFile" BeforeTargets="BeforeBuild">
       <Copy 
         SourceFiles="..\My.EditorConfig.NuGet.Package.Internal\build\My.EditorConfig.NuGet.Package.Internal.props"
-        DestinationFiles="build\My.EditorConfig.NuGet.Package.props"
+        DestinationFiles="build\My.EditorConfig.NuGet.Package.NoSynchronisationContext.props"
         SkipUnchangedFiles="true"
         UseHardlinksIfPossible="false" />
   </Target>
