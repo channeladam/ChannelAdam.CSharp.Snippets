@@ -597,4 +597,3 @@ dotnet_diagnostic.RCS1243.severity = error
 dotnet_diagnostic.RCS1244.severity = error
 
 # Analyzers for Roslyn API (RCS9xxx) - http://pihrt.net/Roslynator/Analyzers?Query=RCS9
-Builds
