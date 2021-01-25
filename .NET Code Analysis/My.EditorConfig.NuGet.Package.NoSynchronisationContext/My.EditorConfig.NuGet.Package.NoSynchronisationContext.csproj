@@ -48,7 +48,7 @@
 
   <!-- Select the MSBuild props and composed .editorconfig files to pack -->
   <ItemGroup>
-    <None Include="build\*" Pack="true" PackagePath="build\" />
+    <None Include="build\My.EditorConfig.NuGet.Package.NoSynchronisationContext.props" Pack="true" PackagePath="build\" />
     <Content Include="Rules\.editorconfig" Pack="true" PackagePath="content\Rules"></Content>
   </ItemGroup>
 
