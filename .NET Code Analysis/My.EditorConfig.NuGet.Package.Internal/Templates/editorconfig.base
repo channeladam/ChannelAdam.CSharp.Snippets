@@ -435,7 +435,7 @@ dotnet_code_quality.CA1720.api_surface = public
 # CA1725: Parameter names should match base declaration
 dotnet_diagnostic.CA1725.severity = suggestion
 
-CA1801: Unused parameters / IDE0060 / RCS1163
+# CA1801: Unused parameters / IDE0060 / RCS1163
 dotnet_diagnostic.CA1801.severity = suggestion
 
 # CA2227: Collection properties should be read only
