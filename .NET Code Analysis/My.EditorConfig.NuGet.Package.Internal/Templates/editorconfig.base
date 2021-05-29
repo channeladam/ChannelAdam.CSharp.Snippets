@@ -14,14 +14,15 @@ trim_trailing_whitespace = true
 indent_size = 2
 insert_final_newline = true
 charset = utf-8-bom
-max_line_length = 120
+max_line_length = 130
+quote_type = single
 
 # Back-end dev
 [*.{cs,csx,vb,vbx}]
 indent_size = 4
 insert_final_newline = true
 charset = utf-8-bom
-max_line_length = 120
+max_line_length = 130
 
 # XML project files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
@@ -29,6 +30,10 @@ indent_size = 2
 
 # XML config files
 [*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
+indent_size = 2
+
+# dot rc config files
+[.*rc]
 indent_size = 2
 
 
