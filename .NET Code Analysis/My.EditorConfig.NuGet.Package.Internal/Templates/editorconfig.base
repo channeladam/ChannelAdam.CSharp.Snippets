@@ -105,6 +105,15 @@ dotnet_naming_symbols.constant_fields.applicable_kinds            = field
 dotnet_naming_symbols.constant_fields.applicable_accessibilities  = *
 dotnet_naming_symbols.constant_fields.required_modifiers          = const
 
+# Instance fields are camelCase and start with _
+# https://github.com/dotnet/roslyn/blob/c9aa4bee022f2c03f741842432cbf563183d9c2c/.editorconfig#L110
+dotnet_naming_rule.instance_fields_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.instance_fields_should_be_camel_case.symbols = instance_fields
+dotnet_naming_rule.instance_fields_should_be_camel_case.style = instance_field_style
+dotnet_naming_symbols.instance_fields.applicable_kinds = field
+dotnet_naming_style.instance_field_style.capitalization = camel_case
+dotnet_naming_style.instance_field_style.required_prefix = _
+
 
 
 ###########################
