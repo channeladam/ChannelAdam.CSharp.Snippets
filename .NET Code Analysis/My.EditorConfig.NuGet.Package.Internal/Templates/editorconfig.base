@@ -591,7 +591,11 @@ dotnet_diagnostic.RCS1194.severity = error
 dotnet_diagnostic.RCS1195.severity = error
 dotnet_diagnostic.RCS1196.severity = error
 dotnet_diagnostic.RCS1197.severity = error
-dotnet_diagnostic.RCS1198.severity = error
+
+# RCS1198: Avoid unnecessary boxing of value type.
+# https://github.com/dotnet/roslynator/issues/105#issuecomment-314931091 - should be disabled by default, since it can be perceived as more annoying than helpful
+dotnet_diagnostic.RCS1198.severity = none
+
 dotnet_diagnostic.RCS1199.severity = error
 dotnet_diagnostic.RCS1201.severity = error
 dotnet_diagnostic.RCS1202.severity = error
